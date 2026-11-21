@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local data, fitted preprocessing, and run outputs
+/data/
+/cache/
+/artifacts/
+/runs/
+/logs/
+/outputs/
+/tmp/
+*.keras
+*.h5
+*.ckpt
+*.pb
+*.npz
+*.npy
+*.pkl
+*.tmp
+*.log
+
+# LaTeX builds
+reports/*.aux
+reports/*.bbl
+reports/*.blg
+reports/*.fdb_latexmk
+reports/*.fls
+reports/*.log
+reports/*.out
+reports/*.synctex.gz
+reports/*.toc
+reports/*.pdf
+reports/_build/
+
+# OS
+.DS_Store
