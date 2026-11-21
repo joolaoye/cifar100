@@ -1,0 +1,33 @@
+{
+  "completed_epochs": 350,
+  "epoch_seconds_total": 20814.198362,
+  "final_model_sha256": "8cba32a7a55c34577e62a10107ca778e25b876a551d9575f979c14173d8c5621",
+  "finished_at": "2026-11-21T23:25:23.487510+00:00",
+  "history_sha256": "c16b3388411ea29cc258befe80e3221a4ada95e0b320b5e46614f74285c72ccb",
+  "interruption": null,
+  "last_learning_rate": 4.999999874e-05,
+  "sessions": [
+    {
+      "device": {
+        "cpu_devices": [
+          "/physical_device:CPU:0"
+        ],
+        "determinism_note": "Python, NumPy, TensorFlow, and Keras are seeded. Deterministic ops are not forced. Resume restores weights, momentum, optimizer iterations, and the epoch index, but not the shuffle or dropout random stream.",
+        "deterministic_ops": false,
+        "gpu_devices": [
+          "/physical_device:GPU:0"
+        ],
+        "logical_device": "/device:GPU:0",
+        "preflight_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+        "requested": "gpu",
+        "selected_name": "/physical_device:GPU:0",
+        "selected_type": "GPU"
+      },
+      "ended_at": "2026-11-21T23:25:23.069569+00:00",
+      "started_at": "2026-11-21T17:38:05.157928+00:00"
+    }
+  ],
+  "started_at": "2026-11-21T17:38:05.157928+00:00",
+  "status": "completed",
+  "timing_note": "epoch_seconds_total sums completed-epoch durations and excludes time between sessions"
+}

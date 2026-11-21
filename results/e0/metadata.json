@@ -1,0 +1,60 @@
+{
+  "architecture": "all-cnn-c",
+  "batch_size": 256,
+  "cache_key": "cf1e2dce56d7e390fb1ce4624493380124b35efa86cae6fad4eb2e0a9ec4f2b3",
+  "config_sha256": "f08cd48d46230c942606c182216c7e5638ff7329598ec7dd4aebf94874aacd5c",
+  "convolutional_layers": 9,
+  "created_at": "2026-11-21T17:38:05.148794+00:00",
+  "data_source": "official",
+  "device": {
+    "cpu_devices": [
+      "/physical_device:CPU:0"
+    ],
+    "determinism_note": "Python, NumPy, TensorFlow, and Keras are seeded. Deterministic ops are not forced. Resume restores weights, momentum, optimizer iterations, and the epoch index, but not the shuffle or dropout random stream.",
+    "deterministic_ops": false,
+    "gpu_devices": [
+      "/physical_device:GPU:0"
+    ],
+    "logical_device": "/device:GPU:0",
+    "preflight_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+    "requested": "gpu",
+    "selected_name": "/physical_device:GPU:0",
+    "selected_type": "GPU"
+  },
+  "effective_l2": 0.001,
+  "experiment": "e0",
+  "git": {
+    "commit": "f216194d2e421a26610f2013553a9fe12350db1a",
+    "detail": null,
+    "dirty": false,
+    "has_commit": true
+  },
+  "keras_kernel_l2": 0.0005,
+  "output_classes": 100,
+  "reproducibility": "Python, NumPy, TensorFlow, and Keras are seeded. Deterministic ops are not forced. Resume restores weights, momentum, optimizer iterations, and the epoch index, but not the shuffle or dropout random stream.",
+  "run_id": "e0-047fef8bbd29",
+  "runtime": {
+    "backend": "tensorflow",
+    "deterministic_ops": false,
+    "keras": "3.15.1",
+    "numpy": "2.0.2",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.12.11",
+    "tensorflow": "2.18.1"
+  },
+  "schedule": {
+    "decay_factor": 0.1,
+    "epochs": 350,
+    "initial_learning_rate": 0.05,
+    "milestones": [
+      200,
+      250,
+      300
+    ]
+  },
+  "seed": 42,
+  "shuffle_policy": "in-memory NumPy arrays; Keras fit shuffle=True uses tf.random.shuffle on indices each epoch; no full-dataset shuffle buffer",
+  "source_fingerprint": "6e09046884f744a8846bcf9b25a7354db392b01816b7ee4bd50c2a8891454715",
+  "study": "cifar100-allcnnc",
+  "trainable_parameters": 1387108
+}
