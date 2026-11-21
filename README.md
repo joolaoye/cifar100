@@ -26,7 +26,13 @@ Requires Python 3.12 and [uv](https://docs.astral.sh/uv/).
 uv sync
 ```
 
-The locked environment is the reviewed baseline. Apple Silicon Metal acceleration is being evaluated separately; GPU support is not guaranteed by the default installation.
+The lockfile pins TensorFlow 2.18.1. On Apple Silicon it also installs `tensorflow-metal` 1.2.0, which provides the Metal GPU. Other platforms keep the CPU build. Confirm the GPU after syncing:
+
+```bash
+uv run python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+```
+
+A Metal machine should list `GPU:0`. Training accepts `--device gpu` on that machine.
 
 ## Usage
 
