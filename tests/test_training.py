@@ -530,22 +530,41 @@ def test_short_training_records_the_milestone_learning_rate(tmp_path):
 
 
 def test_nonfinite_loss_fails_the_run_without_recording_the_epoch(tmp_path):
-    from keras import callbacks
+    from keras import Input, Model, callbacks, layers
 
-    model, images, labels, run_dir, schedule, device = _tiny_training(tmp_path, epochs=3)
+    _, images, labels, run_dir, schedule, device = _tiny_training(tmp_path, epochs=3)
+
+    class FiniteGate(layers.Layer):
+        """Scale logits elementwise. A fused matmul can drop a NaN kernel."""
+
+        def __init__(self):
+            super().__init__(name="finite_gate")
+            self.scale = self.add_weight(
+                name="scale",
+                shape=(),
+                initializer="ones",
+                trainable=False,
+            )
+
+        def call(self, inputs):
+            return inputs * self.scale
+
+    def build():
+        inputs = Input((4,), name="images")
+        hidden = layers.Dense(3, activation="relu", name="hidden")(inputs)
+        logits = layers.Dense(2, name="probs")(hidden)
+        outputs = layers.Activation("softmax")(FiniteGate()(logits))
+        model = Model(inputs, outputs, name="tiny_test")
+        compile_study_model(model, _e0().training)
+        return model
+
+    model = build()
 
     class DivergeOnSecondEpoch(callbacks.Callback):
-        def __init__(self):
-            super().__init__()
-            self.epoch = None
-
         def on_epoch_begin(self, epoch, logs=None):
-            self.epoch = int(epoch)
-
-        def on_train_batch_begin(self, batch, logs=None):
-            if self.epoch == 1 and int(batch) == 0:
-                variable = self.model.trainable_weights[0]
-                variable.assign(np.full(tuple(variable.shape), np.float32("nan")))
+            if int(epoch) != 1:
+                return
+            self.model.get_layer("finite_gate").scale.assign(np.float32("nan"))
 
     with pytest.raises(TrainingDivergence, match="epoch 2"):
         execute_run(
@@ -568,7 +587,7 @@ def test_nonfinite_loss_fails_the_run_without_recording_the_epoch(tmp_path):
     checkpoints = valid_checkpoints(run_dir)
     assert [item["epoch"] for item in checkpoints] == [1]
     assert checkpoints[0]["optimizer_iterations"] == 4
-    restored = _new_tiny()
+    restored = build()
     assert restore_checkpoint(restored, run_dir) == 1
     assert int(restored.optimizer.iterations) == 4
     with pytest.raises(TrainingError, match="failed run cannot publish"):
