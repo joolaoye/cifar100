@@ -305,11 +305,13 @@ def test_run_directories_are_unique_and_existing_runs_stay(tmp_path):
     assert "BackupAndRestore" not in callbacks
 
 
-def test_git_state_allows_a_repository_without_commits():
-    state = git_state(ROOT)
+def test_git_state_allows_a_repository_without_commits(tmp_path):
+    subprocess.run(["git", "init"], cwd=tmp_path, check=True, capture_output=True)
+    state = git_state(tmp_path)
     assert state["has_commit"] is False
     assert state["commit"] is None
-    assert state["dirty"] is True
+    assert state["dirty"] is False
+    assert state["detail"] == "repository has no commits"
 
 
 def test_history_reconciliation_drops_only_a_durable_suffix(tmp_path):
@@ -523,7 +525,7 @@ def test_short_training_records_the_milestone_learning_rate(tmp_path):
     assert int(model.optimizer.iterations) == 12
     assert read_status(run_dir)["epoch_seconds_total"] == pytest.approx(sum(row["epoch_seconds"] for row in rows))
     metadata = read_metadata(run_dir)
-    assert metadata["git"]["commit"] is None
+    assert metadata["git"] == git_state(ROOT)
     assert metadata["reproducibility"]
 
 
