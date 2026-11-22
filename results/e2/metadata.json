@@ -1,0 +1,60 @@
+{
+  "architecture": "all-cnn-c",
+  "batch_size": 256,
+  "cache_key": "cf1e2dce56d7e390fb1ce4624493380124b35efa86cae6fad4eb2e0a9ec4f2b3",
+  "config_sha256": "56c4cb20161856d77e7c3f1565ca2d92df00aacb72cc9f43c10f1c19103b1491",
+  "convolutional_layers": 18,
+  "created_at": "2026-11-22T00:25:53.004225+00:00",
+  "data_source": "official",
+  "device": {
+    "cpu_devices": [
+      "/physical_device:CPU:0"
+    ],
+    "determinism_note": "Python, NumPy, TensorFlow, and Keras are seeded. Deterministic ops are not forced. Resume restores weights, momentum, optimizer iterations, and the epoch index, but not the shuffle or dropout random stream.",
+    "deterministic_ops": false,
+    "gpu_devices": [
+      "/physical_device:GPU:0"
+    ],
+    "logical_device": "/device:GPU:0",
+    "preflight_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+    "requested": "gpu",
+    "selected_name": "/physical_device:GPU:0",
+    "selected_type": "GPU"
+  },
+  "effective_l2": 0.001,
+  "experiment": "e2",
+  "git": {
+    "commit": "992c6da2213a4544da6815b7655529e7902ca376",
+    "detail": null,
+    "dirty": false,
+    "has_commit": true
+  },
+  "keras_kernel_l2": 0.0005,
+  "output_classes": 100,
+  "reproducibility": "Python, NumPy, TensorFlow, and Keras are seeded. Deterministic ops are not forced. Resume restores weights, momentum, optimizer iterations, and the epoch index, but not the shuffle or dropout random stream.",
+  "run_id": "e2-556139f16e87",
+  "runtime": {
+    "backend": "tensorflow",
+    "deterministic_ops": false,
+    "keras": "3.15.1",
+    "numpy": "2.0.2",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.12.11",
+    "tensorflow": "2.18.1"
+  },
+  "schedule": {
+    "decay_factor": 0.1,
+    "epochs": 350,
+    "initial_learning_rate": 0.05,
+    "milestones": [
+      200,
+      250,
+      300
+    ]
+  },
+  "seed": 42,
+  "shuffle_policy": "in-memory NumPy arrays; Keras fit shuffle=True uses tf.random.shuffle on indices each epoch; no full-dataset shuffle buffer",
+  "source_fingerprint": "6e09046884f744a8846bcf9b25a7354db392b01816b7ee4bd50c2a8891454715",
+  "study": "cifar100-allcnnc",
+  "trainable_parameters": 3628036
+}
