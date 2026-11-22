@@ -889,7 +889,12 @@ def _write_example_figure(path: Path, display: np.ndarray, scored: dict, selecte
     matplotlib.use("Agg", force=False)
     import matplotlib.pyplot as plt
 
-    figure, axes = plt.subplots(2, EXAMPLE_LIMIT, figsize=(8.4, 4.6))
+    figure, axes = plt.subplots(
+        2,
+        EXAMPLE_LIMIT,
+        figsize=(8.4, 6.1),
+        constrained_layout=True,
+    )
     for row, key in enumerate(("correct", "incorrect")):
         indices = selected[key]
         for column in range(EXAMPLE_LIMIT):
@@ -910,7 +915,6 @@ def _write_example_figure(path: Path, display: np.ndarray, scored: dict, selecte
             predicted = class_name(int(scored["predicted"][index]), classes)
             axis.set_title(f"true: {truth}\npred: {predicted}", fontsize=8)
     figure.suptitle("Test examples", fontsize=11)
-    figure.tight_layout()
     figure.savefig(path, dpi=150)
     plt.close(figure)
 

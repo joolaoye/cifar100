@@ -40,6 +40,47 @@ def test_top1_counts_are_exact_on_a_known_example():
     assert int(np.trace(counts)) == 2
 
 
+def test_example_figure_titles_stay_clear_of_images_and_labels(tmp_path, monkeypatch):
+    from matplotlib.figure import Figure
+
+    from cifar100_study.evaluation import _write_example_figure
+
+    display = np.zeros((8, 16, 16, 3), dtype=np.uint8)
+    display[..., 1] = 90
+    truth = np.asarray([47, 58, 41, 1, 20, 54, 22, 63], dtype=np.int64)
+    predicted = np.asarray([52, 58, 84, 1, 12, 36, 7, 15], dtype=np.int64)
+    scored = {"truth": truth, "predicted": predicted}
+    selected = {"correct": [1, 3], "incorrect": [0, 2, 4, 5]}
+    recorded: dict[str, list] = {}
+    original = Figure.savefig
+
+    def capture(self, *args, **kwargs):
+        self.canvas.draw()
+        renderer = self.canvas.get_renderer()
+        recorded["titles"] = []
+        recorded["axes"] = []
+        for axis in self.axes:
+            if axis.get_title():
+                recorded["titles"].append(axis.title.get_window_extent(renderer).frozen())
+                recorded["axes"].append(axis.get_window_extent(renderer).frozen())
+        recorded["suptitle"] = self.texts[0].get_window_extent(renderer).frozen()
+        return original(self, *args, **kwargs)
+
+    monkeypatch.setattr(Figure, "savefig", capture)
+    _write_example_figure(tmp_path / "examples.png", display, scored, selected, 100)
+    assert len(recorded["titles"]) == 6
+    for title_box, axis_box in zip(recorded["titles"], recorded["axes"], strict=True):
+        assert title_box.y0 >= axis_box.y1 + 2
+        assert not title_box.overlaps(axis_box)
+    for title_box in recorded["titles"]:
+        assert not title_box.overlaps(recorded["suptitle"])
+        for axis_box in recorded["axes"]:
+            assert not title_box.overlaps(axis_box)
+    for index, title_box in enumerate(recorded["titles"]):
+        for other in recorded["titles"][index + 1 :]:
+            assert not title_box.overlaps(other)
+
+
 def test_example_selection_keeps_test_order_and_short_groups():
     correct = np.asarray([True, True, False, True, False])
     selected = select_examples(correct, limit=4)
