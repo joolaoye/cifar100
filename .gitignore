@@ -21,6 +21,10 @@ htmlcov/
 /logs/
 /outputs/
 /tmp/
+# Local E2 debugging evidence; coordinated findings live in Notion.
+/results/e2/investigate.py
+/results/e2/investigation.json
+/results/e2/investigation.txt
 *.keras
 *.h5
 *.ckpt
