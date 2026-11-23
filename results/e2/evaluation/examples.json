@@ -1,0 +1,63 @@
+{
+  "correct": [
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "fa4af70c001acc1b8822e324a9fda98739fe5fb5a1a59fabd21df68638026b69",
+      "index": 9,
+      "predicted_label": 0,
+      "true_label": 0
+    },
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "5bfd35a6cc4fe81332a8eb6211bf14559f382575630e24ae065907f191681054",
+      "index": 113,
+      "predicted_label": 0,
+      "true_label": 0
+    },
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "e6433ff17b936b509ef6a003490898fd54a24f01b62d29baad8bb7cb741d83eb",
+      "index": 226,
+      "predicted_label": 0,
+      "true_label": 0
+    },
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "283478964caa104405b82cf2c104ba447c1826d0a9025e5b27f6511399d4a309",
+      "index": 235,
+      "predicted_label": 0,
+      "true_label": 0
+    }
+  ],
+  "incorrect": [
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "b310bb688dad0060952b7e7cc69e810b4ceddc0cbf4fa588f695a184a0739b99",
+      "index": 0,
+      "predicted_label": 0,
+      "true_label": 49
+    },
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "1c9a3c058f7447e893b64d425aa9699ce58cd3ea626da274f1e3fbdf4384d6f1",
+      "index": 1,
+      "predicted_label": 0,
+      "true_label": 33
+    },
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "3ecf7a21953020d87d20fbc34d817c76237eb098f7bedf7097a159b6939b80bf",
+      "index": 2,
+      "predicted_label": 0,
+      "true_label": 72
+    },
+    {
+      "confidence": 0.009999999776,
+      "image_sha256": "11b29f7ff9add425b3cec1264450dfe6e49464659b90dc83687370ce2594b088",
+      "index": 3,
+      "predicted_label": 0,
+      "true_label": 51
+    }
+  ],
+  "rule": "first four correct predictions and first four incorrect predictions, in official test-set order"
+}

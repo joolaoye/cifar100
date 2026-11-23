@@ -1,0 +1,38 @@
+{
+  "cache_key": "cf1e2dce56d7e390fb1ce4624493380124b35efa86cae6fad4eb2e0a9ec4f2b3",
+  "config_sha256": "56c4cb20161856d77e7c3f1565ca2d92df00aacb72cc9f43c10f1c19103b1491",
+  "confusion_sha256": "7f4a4b2730c709402db51c84f2612fb8cbf64fefe34c1f9516b28fc6078083e8",
+  "convolutional_layers": 18,
+  "correct_predictions": 100,
+  "device": {
+    "cpu_devices": [
+      "/physical_device:CPU:0"
+    ],
+    "determinism_note": "Python, NumPy, TensorFlow, and Keras are seeded. Deterministic ops are not forced. Resume restores weights, momentum, optimizer iterations, and the epoch index, but not the shuffle or dropout random stream.",
+    "deterministic_ops": false,
+    "gpu_devices": [
+      "/physical_device:GPU:0"
+    ],
+    "logical_device": "/device:GPU:0",
+    "preflight_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+    "requested": "gpu",
+    "selected_name": "/physical_device:GPU:0",
+    "selected_type": "GPU"
+  },
+  "epoch_seconds_total": 55794.853668,
+  "epochs": 350,
+  "examples_json_sha256": "4d7f464ff8b985045e75d538a33433ca70053f861b743f255a13ca4294138117",
+  "examples_png_sha256": "3a64b119af47010395793bff959b1a3ce6def3d4e19e3b285cf8cafbe287a3c9",
+  "experiment": "e2",
+  "format_version": 1,
+  "mac_unit": "multiply-accumulates per image",
+  "macs_per_image": 816860160,
+  "model_sha256": "929311876b270b765ebc75160c2f4fcbc000ef29fce6882cbe885871ff87b70c",
+  "output_classes": 100,
+  "predictions_sha256": "25f194a8f8e0698f5a75e7b8cfce3344647e8125077a5a28d082d54429ef4510",
+  "run_id": "e2-556139f16e87",
+  "source_fingerprint": "6e09046884f744a8846bcf9b25a7354db392b01816b7ee4bd50c2a8891454715",
+  "test_count": 10000,
+  "top1_accuracy": 0.01,
+  "trainable_parameters": 3628036
+}
